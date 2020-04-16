@@ -36,6 +36,9 @@ class Handler extends ExceptionHandler
      */
     public function report(Throwable $exception)
     {
+        if ($exception instanceof \App\Exceptions\UserNotFoundException)  {
+            return $exception;
+        }
         parent::report($exception);
     }
 
@@ -50,6 +53,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        // if ($exception instanceof \App\Exceptions\UserNotFoundException)  {
+        //     return $exception->render($request);
+        // }
+     
         return parent::render($request, $exception);
     }
 }
